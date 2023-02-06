@@ -1,7 +1,9 @@
-import 'package:color_tile/component/constant_block_generator.dart';
-import 'package:color_tile/component/movable_block_generator.dart';
+import 'package:color_tile/component/constant_block.dart';
+import 'package:color_tile/component/movable_block.dart';
+import 'package:color_tile/component/submit_button.dart';
 import 'package:color_tile/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:quiver/iterables.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({required this.title, super.key});
@@ -15,16 +17,39 @@ class MyHomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: Center(
-        child: Container(
-          width: kContainerWidth,
-          height: kContainerheight,
-          color: Colors.transparent,
-          child: Stack(
-            children: [
-              ...constantBlockGenerator(),
-              ...movableBlockGenerator(),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: kContainerWidth,
+              height: kContainerheight,
+              color: Colors.transparent,
+              child: Stack(
+                children: [
+                  ...[
+                    for (num i in range(kConstantBlockProfile.length))
+                      ConstantBlock(
+                        kConstantBlockProfile[i.toInt()]['initialX'],
+                        kConstantBlockProfile[i.toInt()]['initialY'],
+                        kConstantBlockProfile[i.toInt()]['blockColor'],
+                        i.toInt(),
+                      )
+                  ],
+                  ...[
+                    for (num i in range(kMovableBlockProfile.length))
+                      MovableBlock(
+                        kMovableBlockProfile[i.toInt()]['initialX'],
+                        kMovableBlockProfile[i.toInt()]['initialY'],
+                        kMovableBlockProfile[i.toInt()]['blockColor'],
+                        i.toInt(),
+                      )
+                  ],
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+            const SubmitButton(),
+          ],
         ),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:color_tile/component/positioned_block.dart';
-import 'package:color_tile/model/coordinate_model.dart';
-import 'package:color_tile/provider/coordinate_provider.dart';
+import 'package:color_tile/provider/block_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,9 +27,11 @@ class MovableBlock extends HookConsumerWidget {
       onPanEnd: (details) {
         // CoordinateModelの初期座標と最終座標を登録する
         print('end');
-        ref
-            .read(coordinateModelProvider.notifier)
-            .updateCoordinate(currentX.value, currentY.value, blockIndex);
+        ref.read(blockModelProvider.notifier).updateCoordinate(
+              currentX.value,
+              currentY.value,
+              blockIndex,
+            );
       },
       child: PositionedBlock(
         x: currentX.value,

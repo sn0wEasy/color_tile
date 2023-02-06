@@ -19,7 +19,7 @@ Color kPink = const Color.fromARGB(128, 233, 81, 137);
 Color kGrey = const Color.fromARGB(255, 163, 168, 170);
 
 // constant block configuration
-List<Map<String, dynamic>> kConstantBlockConfiguration = <Map<String, dynamic>>[
+List<Map<String, dynamic>> kConstantBlockProfile = <Map<String, dynamic>>[
   {'initialX': 41, 'initialY': 0, 'blockColor': kGrey},
   {'initialX': 130, 'initialY': 0, 'blockColor': kGrey},
   {'initialX': 175, 'initialY': 0, 'blockColor': kGrey},
@@ -31,7 +31,7 @@ List<Map<String, dynamic>> kConstantBlockConfiguration = <Map<String, dynamic>>[
 ];
 
 // movable block configuration
-List<Map<String, dynamic>> kMovableBlockConfiguration = <Map<String, dynamic>>[
+List<Map<String, dynamic>> kMovableBlockProfile = <Map<String, dynamic>>[
   {'initialX': 0.2, 'initialY': 0, 'blockColor': kYellow},
   {'initialX': 48, 'initialY': 0, 'blockColor': kTeal},
   {'initialX': 89.2, 'initialY': 0, 'blockColor': kBlue},
