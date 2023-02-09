@@ -26,7 +26,6 @@ class MovableBlock extends HookConsumerWidget {
       },
       onPanEnd: (details) {
         // CoordinateModelの初期座標と最終座標を登録する
-        print('end');
         ref.read(blockModelProvider.notifier).updateCoordinate(
               currentX.value,
               currentY.value,

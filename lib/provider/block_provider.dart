@@ -1,6 +1,5 @@
 import 'package:color_tile/model/block_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'dart:math';
 import 'package:color_tile/constants.dart';
 import 'package:quiver/iterables.dart';
 
@@ -27,18 +26,12 @@ class BlockModelNotifier extends StateNotifier<List<BlockModel>> {
     // stateと新しい要素を元に新しいリストを作成し、stateに代入する
     state = [...state, newBlock]..sort((a, b) => a.index.compareTo(b.index));
   }
+
+  void initCoordinate() {
+    state = _blockModelList;
+  }
 }
 
 final blockModelProvider =
     StateNotifierProvider<BlockModelNotifier, List<BlockModel>>(
         (ref) => BlockModelNotifier());
-
-final scoreProvider = Provider<double>((ref) {
-  List<BlockModel> blockProfileList = ref.watch(blockModelProvider);
-  double score = 0;
-  blockProfileList.asMap().forEach((_, BlockModel blockProfile) {
-    score += sqrt(pow(blockProfile.finalX - blockProfile.initialX, 2) +
-        pow(blockProfile.finalY - blockProfile.initialY, 2));
-  });
-  return score;
-});
