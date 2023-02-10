@@ -1,4 +1,5 @@
 import 'package:color_tile/provider/block_provider.dart';
+import 'package:color_tile/provider/elapsedtime_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,7 +26,7 @@ class ResultPage extends ConsumerWidget {
             ),
             const SizedBox(height: 30),
             Text(
-              'Time: 00:30:00',
+              'Time: ${ref.watch(elapsedTimeProvider)}',
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
@@ -42,6 +43,7 @@ class ResultPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
+                ref.read(elapsedTimeProvider.notifier).state = 0;
                 return context.go('/playing');
               },
               child: const Text('Continue'),
@@ -50,6 +52,7 @@ class ResultPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
+                ref.read(elapsedTimeProvider.notifier).state = 0;
                 return context.go('/');
               },
               child: const Text('Back to Title'),

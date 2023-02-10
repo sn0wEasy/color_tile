@@ -1,7 +1,11 @@
 import 'package:color_tile/model/block_model.dart';
 import 'package:color_tile/provider/block_provider.dart';
+import 'package:color_tile/provider/elapsedtime_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math';
+
+final timeScoreProvider =
+    StateProvider<int>((ref) => ref.watch(elapsedTimeProvider) + 1);
 
 final distanceScoreProvider = Provider<int>((ref) {
   List<BlockModel> blockProfileList = ref.watch(blockModelProvider);
@@ -16,7 +20,7 @@ final distanceScoreProvider = Provider<int>((ref) {
 
 final totalScoreProvider = Provider<int>((ref) {
   int distanceScore = ref.watch(distanceScoreProvider);
-  int timeScore = 30;
-  final totalScore = distanceScore ~/ timeScore;
+  int timeScore = ref.watch(timeScoreProvider);
+  int totalScore = distanceScore ~/ timeScore;
   return totalScore;
 });

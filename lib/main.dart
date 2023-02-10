@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       GoRoute(
         path: '/playing',
-        builder: (context, state) => const PlayingPage(),
+        builder: (context, state) => PlayingPage(),
       ),
       GoRoute(
         path: '/result',

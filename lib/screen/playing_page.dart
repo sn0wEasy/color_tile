@@ -1,15 +1,19 @@
 import 'package:color_tile/component/constant_block.dart';
 import 'package:color_tile/component/movable_block.dart';
-import 'package:color_tile/component/submit_button.dart';
 import 'package:color_tile/constants.dart';
+import 'package:color_tile/provider/elapsedtime_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';
+import 'package:go_router/go_router.dart';
 
-class PlayingPage extends StatelessWidget {
-  const PlayingPage({super.key});
+class PlayingPage extends ConsumerWidget {
+  PlayingPage({super.key});
+  final Stopwatch timer = Stopwatch();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    timer.start();
     return Scaffold(
       appBar: AppBar(
         title: const Text('ARtile'),
@@ -46,7 +50,15 @@ class PlayingPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            const SubmitButton(),
+            TextButton(
+              onPressed: () {
+                timer.stop();
+                ref.read(elapsedTimeProvider.notifier).state =
+                    timer.elapsedMilliseconds;
+                return context.go('/result');
+              },
+              child: const Text('submit'),
+            ),
           ],
         ),
       ),
