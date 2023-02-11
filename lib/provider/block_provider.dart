@@ -28,6 +28,11 @@ class BlockModelNotifier extends StateNotifier<List<BlockModel>> {
   }
 
   void initCoordinate() {
+    // FIXME: 初期化はブロックを指定範囲内にランダムに配置する
+    state = _blockModelList;
+  }
+
+  void arrangeCoordinate() {
     state = _blockModelList;
   }
 }

@@ -7,6 +7,7 @@ import 'dart:math';
 final timeScoreProvider =
     StateProvider<int>((ref) => ref.watch(elapsedTimeProvider) + 1);
 
+// FIXME: スコア計算ロジックを「ブロックごと」から「ブロックの色ごと」に修正する
 final distanceScoreProvider = Provider<int>((ref) {
   List<BlockModel> blockProfileList = ref.watch(blockModelProvider);
   double score = 0;

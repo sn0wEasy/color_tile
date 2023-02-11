@@ -11,9 +11,6 @@ class ResultPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ARtile'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,17 +24,17 @@ class ResultPage extends ConsumerWidget {
             const SizedBox(height: 30),
             Text(
               'Time: ${ref.watch(elapsedTimeProvider)}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
             Text(
               'Distance Score: ${ref.watch(distanceScoreProvider)}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
             Text(
               'Total Score: ${ref.watch(totalScoreProvider)}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
             ElevatedButton(
