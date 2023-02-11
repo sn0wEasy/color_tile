@@ -19,12 +19,15 @@ class BlockModelNotifier extends StateNotifier<List<BlockModel>> {
   BlockModelNotifier() : super(_blockModelList);
 
   void updateCoordinate(double x, double y, int index) {
+    // 更新用のstateを用意する
+    List<BlockModel> updatingState = [...state];
     // 更新前の要素をcopyWithして新しい要素を作成する
-    BlockModel newBlock = state[index].copyWith(finalX: x, finalY: y);
+    BlockModel newBlock = updatingState[index].copyWith(finalX: x, finalY: y);
     // 更新前の要素をindexを元にstateから削除する
-    state.remove(state[index]);
+    updatingState.remove(updatingState[index]);
     // stateと新しい要素を元に新しいリストを作成し、stateに代入する
-    state = [...state, newBlock]..sort((a, b) => a.index.compareTo(b.index));
+    state = [...updatingState, newBlock]
+      ..sort((a, b) => a.index.compareTo(b.index));
   }
 
   void initCoordinate() {
@@ -35,6 +38,10 @@ class BlockModelNotifier extends StateNotifier<List<BlockModel>> {
   void arrangeCoordinate() {
     state = _blockModelList;
   }
+
+  List<BlockModel> get currentBlockModelList => state;
+
+  List<BlockModel> get initialBlockModelList => _blockModelList;
 }
 
 final blockModelProvider =
