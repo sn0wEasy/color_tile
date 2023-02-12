@@ -2,6 +2,7 @@ import 'package:color_tile/model/block_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:color_tile/constants.dart';
 import 'package:quiver/iterables.dart';
+import 'dart:math';
 
 final _blockModelList = [
   for (num i in range(kMovableBlockProfile.length))
@@ -15,24 +16,33 @@ final _blockModelList = [
     )
 ];
 
+double randomGeneratorX() =>
+    Random().nextDouble() * (kContainerWidth - kTileSize * 2) + kTileSize;
+double randomGeneratorY() =>
+    Random().nextDouble() * (kContainerHeight - kTileSize * 2) + kTileSize;
+
 class BlockModelNotifier extends StateNotifier<List<BlockModel>> {
   BlockModelNotifier() : super(_blockModelList);
 
   void updateCoordinate(double x, double y, int index) {
     // 更新用のstateを用意する
     List<BlockModel> updatingState = [...state];
-    // 更新前の要素をcopyWithして新しい要素を作成する
-    BlockModel newBlock = updatingState[index].copyWith(finalX: x, finalY: y);
-    // 更新前の要素をindexを元にstateから削除する
-    updatingState.remove(updatingState[index]);
-    // stateと新しい要素を元に新しいリストを作成し、stateに代入する
-    state = [...updatingState, newBlock]
-      ..sort((a, b) => a.index.compareTo(b.index));
+    // 更新前の要素をcopyWithして新しい要素に更新する
+    updatingState[index] = updatingState[index].copyWith(finalX: x, finalY: y);
+    // stateを更新する
+    state = [...updatingState];
   }
 
   void initCoordinate() {
-    // FIXME: 初期化はブロックを指定範囲内にランダムに配置する
-    state = _blockModelList;
+    // 更新用のstateを用意する
+    List<BlockModel> updatingState = [...state];
+    // 各要素についてcopyWithして新しい要素に更新する
+    for (num i in range(updatingState.length)) {
+      updatingState[i.toInt()] = updatingState[i.toInt()]
+          .copyWith(finalX: randomGeneratorX(), finalY: randomGeneratorY());
+    }
+    // stateを更新する
+    state = [...updatingState];
   }
 
   void arrangeCoordinate() {
