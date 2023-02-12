@@ -23,7 +23,7 @@ class ResultPage extends ConsumerWidget {
             ),
             const SizedBox(height: 30),
             Text(
-              'Time: ${ref.watch(elapsedTimeProvider)}',
+              'Time: ${ref.watch(stopwatchProvider)}',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
@@ -40,7 +40,8 @@ class ResultPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
-                ref.read(elapsedTimeProvider.notifier).state = 0;
+                ref.read(stopwatchProvider.notifier).reset();
+                ref.read(stopwatchProvider.notifier).start();
                 return context.go('/playing');
               },
               child: const Text('Continue'),
@@ -49,7 +50,7 @@ class ResultPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
-                ref.read(elapsedTimeProvider.notifier).state = 0;
+                ref.read(stopwatchProvider.notifier).reset();
                 return context.go('/');
               },
               child: const Text('Back to Title'),

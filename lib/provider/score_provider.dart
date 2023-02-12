@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math';
 
 final timeScoreProvider =
-    StateProvider<int>((ref) => ref.watch(elapsedTimeProvider) + 1);
+    StateProvider<int>((ref) => ref.watch(stopwatchProvider) + 1);
 
 // FIXME: スコア算出ロジックを「ブロックごと」から「ブロックの色ごと」に修正する
 final distanceScoreProvider = Provider<int>((ref) {
