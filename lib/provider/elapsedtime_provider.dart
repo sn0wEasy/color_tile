@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'dart:async';
 
 class StopwatchNotifier extends StateNotifier<int> {
   StopwatchNotifier() : super(0);
@@ -14,7 +13,7 @@ class StopwatchNotifier extends StateNotifier<int> {
   void stop() => timer.stop();
   void reset() => timer.reset();
 
-  void _keepRunning() async {
+  void _keepRunning() {
     if (timer.isRunning) {
       state = timer.elapsedMilliseconds;
       Timer(const Duration(milliseconds: 10), _keepRunning);
@@ -34,5 +33,3 @@ final displayTimeProvider = Provider<String>((ref) {
       '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}:${milliSeconds.toString().padLeft(2, '0')}';
   return displayedTime;
 });
-
-final resultTimeProvider = StateProvider<int>((ref) => 0);

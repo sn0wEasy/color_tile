@@ -4,7 +4,6 @@ import 'package:color_tile/constants.dart';
 import 'package:color_tile/provider/elapsedtime_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quiver/iterables.dart';
 import 'package:go_router/go_router.dart';
 import 'package:color_tile/provider/block_provider.dart';
