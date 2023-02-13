@@ -15,7 +15,7 @@ final _blockModelList = [
       index: i.toInt(),
     )
 ];
-// t < x < W - t
+
 double randomGeneratorX() =>
     Random().nextDouble() * (kContainerWidth - kTileSize * 2) +
     kTileSize -
