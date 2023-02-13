@@ -35,7 +35,7 @@ void main() {
     container.read(blockModelProvider.notifier).updateCoordinate(100, 100, 0);
 
     List<BlockModel> updatedModelList =
-        container.read(blockModelProvider.notifier).currentBlockModelList;
+        container.read(blockModelProvider.notifier).state;
 
     // 今度は Listener が変更後の値で呼び出されているか確認
     verify(listener(defaultModelList, updatedModelList)).called(1);

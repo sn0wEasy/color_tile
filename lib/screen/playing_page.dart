@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';
 import 'package:go_router/go_router.dart';
+import 'package:color_tile/model/block_model.dart';
 import 'package:color_tile/provider/block_provider.dart';
 
 class PlayingPage extends HookConsumerWidget {
@@ -13,6 +14,7 @@ class PlayingPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    List<BlockModel> initialBlockProfile = ref.watch(blockModelProvider);
     return Scaffold(
       body: Center(
         child: OverflowBox(
@@ -38,13 +40,12 @@ class PlayingPage extends HookConsumerWidget {
                           i.toInt(),
                         )
                     ],
-                    // FIXME: ランダム化した座標をproviderから取得する
                     ...[
-                      for (num i in range(kMovableBlockProfile.length))
+                      for (num i in range(initialBlockProfile.length))
                         MovableBlock(
-                          kMovableBlockProfile[i.toInt()]['initialX'],
-                          kMovableBlockProfile[i.toInt()]['initialY'],
-                          kMovableBlockProfile[i.toInt()]['blockColor'],
+                          initialBlockProfile[i.toInt()].finalX,
+                          initialBlockProfile[i.toInt()].finalY,
+                          initialBlockProfile[i.toInt()].color,
                           i.toInt(),
                         )
                     ],

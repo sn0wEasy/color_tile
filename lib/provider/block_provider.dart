@@ -15,11 +15,15 @@ final _blockModelList = [
       index: i.toInt(),
     )
 ];
-
+// t < x < W - t
 double randomGeneratorX() =>
-    Random().nextDouble() * (kContainerWidth - kTileSize * 2) + kTileSize;
+    Random().nextDouble() * (kContainerWidth - kTileSize * 2) +
+    kTileSize -
+    kXConst;
 double randomGeneratorY() =>
-    Random().nextDouble() * (kContainerHeight - kTileSize * 2) + kTileSize;
+    Random().nextDouble() * (kContainerHeight - kTileSize * 2) +
+    kTileSize -
+    kYConst;
 
 class BlockModelNotifier extends StateNotifier<List<BlockModel>> {
   BlockModelNotifier() : super(_blockModelList);
@@ -48,8 +52,6 @@ class BlockModelNotifier extends StateNotifier<List<BlockModel>> {
   void arrangeCoordinate() {
     state = _blockModelList;
   }
-
-  List<BlockModel> get currentBlockModelList => state;
 
   List<BlockModel> get initialBlockModelList => _blockModelList;
 }
