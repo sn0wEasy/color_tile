@@ -1,7 +1,7 @@
 import 'package:color_tile/component/constant_block.dart';
 import 'package:color_tile/component/movable_block.dart';
 import 'package:color_tile/constants.dart';
-import 'package:color_tile/provider/elapsedtime_provider.dart';
+import 'package:color_tile/provider/time_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';

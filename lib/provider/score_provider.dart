@@ -1,6 +1,6 @@
 import 'package:color_tile/model/block_model.dart';
 import 'package:color_tile/provider/block_provider.dart';
-import 'package:color_tile/provider/elapsedtime_provider.dart';
+import 'package:color_tile/provider/time_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math';
 
