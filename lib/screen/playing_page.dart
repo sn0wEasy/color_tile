@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';
 import 'package:go_router/go_router.dart';
-import 'package:color_tile/model/block_model.dart';
+import 'package:color_tile/model/block.dart';
 import 'package:color_tile/provider/block_provider.dart';
 
 class PlayingPage extends HookConsumerWidget {
