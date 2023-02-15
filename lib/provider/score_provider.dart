@@ -18,11 +18,6 @@ final timeScoreProvider =
 final distanceScoreProvider = Provider<int>((ref) {
   List<BlockModel> blockProfileList = ref.watch(blockModelProvider);
   double distanceSum = 0;
-  blockProfileList.asMap().forEach((_, BlockModel blockProfile) {
-    distanceSum += sqrt(pow(blockProfile.finalX - blockProfile.initialX, 2) +
-        pow(blockProfile.finalY - blockProfile.initialY, 2));
-  });
-
   // 1. 色ごとにブロックのリストを作成する
   List<List<BlockModel>> blockListByColor = kMovableColorList
       .map((e) => blockProfileList.where((e) => e.color == kYellow).toList())
