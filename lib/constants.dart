@@ -22,6 +22,7 @@ Color kBlue = const Color.fromARGB(128, 12, 173, 231);
 Color kRed = const Color.fromARGB(128, 230, 1, 19);
 Color kPink = const Color.fromARGB(128, 233, 81, 137);
 Color kGrey = const Color.fromARGB(255, 163, 168, 170);
+List<Color> kMovableColorList = <Color>[kYellow, kTeal, kBlue, kRed, kPink];
 
 // constant block configuration
 List<Map<String, dynamic>> kConstantBlockProfile = <Map<String, dynamic>>[

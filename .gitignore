@@ -45,3 +45,6 @@ app.*.map.json
 
 # Image directory
 /images/
+
+# VSCode setting
+.vscode
