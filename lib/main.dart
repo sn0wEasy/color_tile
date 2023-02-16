@@ -16,9 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       routerConfig: _router,
     );
   }
@@ -29,14 +26,16 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (context, state) => const MyHomePage(),
-      ),
-      GoRoute(
-        path: '/playing',
-        builder: (context, state) => PlayingPage(),
-      ),
-      GoRoute(
-        path: '/result',
-        builder: (context, state) => const ResultPage(),
+        routes: [
+          GoRoute(
+            path: 'playing',
+            builder: (context, state) => PlayingPage(),
+          ),
+          GoRoute(
+            path: 'result',
+            builder: (context, state) => const ResultPage(),
+          ),
+        ],
       ),
     ],
     errorPageBuilder: (context, state) => MaterialPage(

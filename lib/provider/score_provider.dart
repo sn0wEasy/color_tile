@@ -14,7 +14,6 @@ double calcDistance(double x1, double y1, double x2, double y2) {
 final timeScoreProvider =
     StateProvider<int>((ref) => ref.watch(stopwatchProvider) + 1);
 
-// FIXME: スコア算出ロジックを「ブロックごと」から「ブロックの色ごと」に修正する
 final distanceScoreProvider = Provider<int>((ref) {
   List<BlockModel> blockProfileList = ref.watch(blockModelProvider);
   double distanceSum = 0;
