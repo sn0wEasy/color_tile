@@ -25,6 +25,7 @@ class ResultPage extends ConsumerWidget {
             ),
             const SizedBox(height: 30),
             Text(
+              // FIXME: タイマーがストップになった時だけ監視するようProviderを修正
               'Time: ${ref.watch(stopwatchProvider)}',
               style: const TextStyle(fontSize: 20),
             ),
@@ -35,6 +36,7 @@ class ResultPage extends ConsumerWidget {
             ),
             const SizedBox(height: 30),
             Text(
+              // FIXME: タイマーがストップになった時だけ監視するようProviderを修正
               'Total Score: ${ref.watch(totalScoreProvider)}',
               style: const TextStyle(fontSize: 20),
             ),
