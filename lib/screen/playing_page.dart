@@ -2,6 +2,7 @@ import 'package:color_tile/component/constant_block.dart';
 import 'package:color_tile/component/movable_block.dart';
 import 'package:color_tile/constants.dart';
 import 'package:color_tile/provider/time_provider.dart';
+import 'package:color_tile/screen/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';
@@ -60,7 +61,11 @@ class PlayingPage extends HookConsumerWidget {
               TextButton(
                 onPressed: () {
                   ref.read(stopwatchProvider.notifier).stop();
-                  return context.go('/result');
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ResultPage(),
+                    ),
+                  );
                 },
                 child: const Text('submit'),
               ),

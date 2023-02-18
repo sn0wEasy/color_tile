@@ -1,5 +1,7 @@
 import 'package:color_tile/provider/block_provider.dart';
 import 'package:color_tile/provider/time_provider.dart';
+import 'package:color_tile/screen/playing_page.dart';
+import 'package:color_tile/screen/title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -42,7 +44,11 @@ class ResultPage extends ConsumerWidget {
                 ref.read(blockModelProvider.notifier).initCoordinate();
                 ref.read(stopwatchProvider.notifier).reset();
                 ref.read(stopwatchProvider.notifier).start();
-                return context.go('/playing');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => PlayingPage(),
+                  ),
+                );
               },
               child: const Text('Continue'),
             ),
@@ -51,7 +57,11 @@ class ResultPage extends ConsumerWidget {
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
                 ref.read(stopwatchProvider.notifier).reset();
-                return context.go('/');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyHomePage(),
+                  ),
+                );
               },
               child: const Text('Back to Title'),
             ),

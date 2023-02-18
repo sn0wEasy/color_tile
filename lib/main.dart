@@ -14,37 +14,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Flutter Demo',
-      routerConfig: _router,
+      home: const MyHomePage(),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext contest) => const MyHomePage(),
+        '/playing': (BuildContext context) => PlayingPage(),
+        '/result': (BuildContext context) => const ResultPage(),
+      },
     );
   }
-
-  final _router = GoRouter(
-    initialLocation: '/',
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const MyHomePage(),
-        routes: [
-          GoRoute(
-            path: 'playing',
-            builder: (context, state) => PlayingPage(),
-          ),
-          GoRoute(
-            path: 'result',
-            builder: (context, state) => const ResultPage(),
-          ),
-        ],
-      ),
-    ],
-    errorPageBuilder: (context, state) => MaterialPage(
-      key: state.pageKey,
-      child: Scaffold(
-        body: Center(
-          child: Text(state.error.toString()),
-        ),
-      ),
-    ),
-  );
 }
