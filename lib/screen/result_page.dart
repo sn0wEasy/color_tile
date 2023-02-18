@@ -25,12 +25,12 @@ class ResultPage extends ConsumerWidget {
             const SizedBox(height: 30),
             Text(
               // FIXME: タイマーがストップになった時だけ監視するようProviderを修正
-              'Time: ${ref.watch(stopwatchProvider)}',
+              'Time: ${ref.watch(stopwatchDiscreteProvider)}',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
             Text(
-              'Distance Score: ${ref.watch(distanceScoreProvider)}',
+              'Distance Score: ${ref.watch(displayDistanceScoreProvider)}',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
@@ -43,8 +43,8 @@ class ResultPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
-                ref.read(stopwatchProvider.notifier).reset();
-                ref.read(stopwatchProvider.notifier).start();
+                ref.read(stopwatchContinuousProvider.notifier).reset();
+                ref.read(stopwatchContinuousProvider.notifier).start();
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => PlayingPage(),
@@ -57,7 +57,7 @@ class ResultPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
-                ref.read(stopwatchProvider.notifier).reset();
+                ref.read(stopwatchContinuousProvider.notifier).reset();
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const MyHomePage(),

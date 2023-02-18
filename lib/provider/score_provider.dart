@@ -11,19 +11,38 @@ double calcDistance(double x1, double y1, double x2, double y2) {
   return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
 
+// submitボタンが押された時のTimeScoreを公開するプロバイダ
 final timeScoreProvider =
-    StateProvider<int>((ref) => ref.watch(stopwatchProvider) + 1);
+    StateProvider<int>((ref) => ref.watch(stopwatchDiscreteProvider) + 1);
 
+// push()が実行された時のDistanceScoreを通知するNotifire
+class SubmitDistanceScoreNotifier extends StateNotifier<int> {
+  SubmitDistanceScoreNotifier(this.ref) : super(0);
+
+  Ref ref;
+
+  void push() {
+    state = ref.read(distanceScoreProvider);
+  }
+}
+
+// submitボタンが押された時のDistanceScoreを公開するプロバイダ
+final displayDistanceScoreProvider =
+    StateNotifierProvider<SubmitDistanceScoreNotifier, int>(
+        (ref) => SubmitDistanceScoreNotifier(ref));
+
+// 現在のblockModelProviderの状態に応じたDistanceScoreを公開するプロバイダ
 final distanceScoreProvider = Provider<int>((ref) {
   List<BlockModel> blockProfileList = ref.watch(blockModelProvider);
   double distanceSum = 0;
-  // 1. 色ごとにブロックのリストを作成する
+
+  /// 1. 色ごとにブロックのリストを作成する
   List<List<BlockModel>> blockListByColor = kMovableColorList
       .map((e) => blockProfileList.where((e) => e.color == kYellow).toList())
       .toList();
 
-  // 2. 色ごとに距離の合計の最小値を求める
-  /// 初期座標リストは固定、最終座標リストは順列でループさせる
+  /// 2. 色ごとに距離の合計の最小値を求める
+  // 初期座標リストは固定、最終座標リストは順列でループさせる
   for (List<BlockModel> coloredBlockList in blockListByColor) {
     List<double> coloredSumList = <double>[];
     for (List<BlockModel> fin in getPermutation(coloredBlockList)) {
@@ -43,7 +62,7 @@ final distanceScoreProvider = Provider<int>((ref) {
 
 // FIXME: スコア算出ロジックを改良する
 final totalScoreProvider = Provider<int>((ref) {
-  int distanceScore = ref.watch(distanceScoreProvider);
+  int distanceScore = ref.watch(displayDistanceScoreProvider);
   int timeScore = ref.watch(timeScoreProvider);
   int totalScore = distanceScore ~/ sqrt(timeScore);
   return totalScore;

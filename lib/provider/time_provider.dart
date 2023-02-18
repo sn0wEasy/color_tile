@@ -21,11 +21,29 @@ class StopwatchNotifier extends StateNotifier<int> {
   }
 }
 
-final stopwatchProvider =
+/// Stopwatchの値を連続的に公開するプロバイダ
+final stopwatchContinuousProvider =
     StateNotifierProvider<StopwatchNotifier, int>((ref) => StopwatchNotifier());
 
-final displayTimeProvider = Provider<String>((ref) {
-  final elapsedTime = ref.watch(stopwatchProvider);
+/// submitボタンが押された時のストップウォッチの時間を通知するNotfier
+class SubmitTimeNotifier extends StateNotifier<int> {
+  SubmitTimeNotifier(this.ref) : super(0);
+
+  final Ref ref;
+  void push() {
+    state = ref.read(stopwatchContinuousProvider);
+  }
+}
+
+/// Stopwatchの値を離散的に公開するプロバイダ
+// リザルトに表示される値がストップウォッチに合わせて更新され続けるのを防止する
+final stopwatchDiscreteProvider =
+    StateNotifierProvider<SubmitTimeNotifier, int>(
+        (ref) => SubmitTimeNotifier(ref));
+
+/// Stopwatchの値を連続的に公開するプロバイダ
+final displayContinuousTimeProvider = Provider<String>((ref) {
+  final elapsedTime = ref.watch(stopwatchContinuousProvider);
   final int milliSeconds = ((elapsedTime / 10).floor() % 100);
   final int seconds = elapsedTime ~/ 1000 % 60;
   final int minutes = elapsedTime ~/ (1000 * 60) % 60;

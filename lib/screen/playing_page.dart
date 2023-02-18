@@ -1,6 +1,7 @@
 import 'package:color_tile/component/constant_block.dart';
 import 'package:color_tile/component/movable_block.dart';
 import 'package:color_tile/constants.dart';
+import 'package:color_tile/provider/score_provider.dart';
 import 'package:color_tile/provider/time_provider.dart';
 import 'package:color_tile/screen/result_page.dart';
 import 'package:flutter/material.dart';
@@ -53,13 +54,15 @@ class PlayingPage extends HookConsumerWidget {
                 ),
               ),
               Text(
-                '${ref.watch(displayTimeProvider)}',
+                '${ref.watch(displayContinuousTimeProvider)}',
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 30),
               TextButton(
                 onPressed: () {
-                  ref.read(stopwatchProvider.notifier).stop();
+                  ref.read(stopwatchContinuousProvider.notifier).stop();
+                  ref.read(stopwatchDiscreteProvider.notifier).push();
+                  ref.read(displayDistanceScoreProvider.notifier).push();
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const ResultPage(),

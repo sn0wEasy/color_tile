@@ -24,7 +24,8 @@ class MyHomePage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
-                ref.read(stopwatchProvider.notifier).start();
+                ref.read(stopwatchContinuousProvider.notifier).reset();
+                ref.read(stopwatchContinuousProvider.notifier).start();
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => PlayingPage(),
