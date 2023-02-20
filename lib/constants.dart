@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // container property
 double kMagnificationWidth = 1;
 double kMagnificationHeight = 2;
-double kContainerWidth = 299 * kMagnificationWidth * 2;
+double kContainerWidth = 299 * kMagnificationWidth * 1.4;
 double kContainerHeight = 82 * kMagnificationHeight * 2;
 
 // tile property

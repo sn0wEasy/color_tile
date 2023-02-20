@@ -25,12 +25,12 @@ class ResultPage extends ConsumerWidget {
             const SizedBox(height: 30),
             Text(
               // FIXME: タイマーがストップになった時だけ監視するようProviderを修正
-              'Time: ${ref.watch(stopwatchDiscreteProvider)}',
+              'Speed: ${ref.watch(stopwatchDiscreteProvider)}',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
             Text(
-              'Distance Score: ${ref.watch(displayDistanceScoreProvider)}',
+              'Accuracy: ${ref.watch(displayDistanceScoreProvider)}',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
