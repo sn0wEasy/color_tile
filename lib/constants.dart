@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
 // container property
-double kMagnificationWidth = 1;
-double kMagnificationHeight = 2;
-double kContainerWidth = 299 * kMagnificationWidth * 1.4;
-double kContainerHeight = 82 * kMagnificationHeight * 2;
+double kContainerWidth = 400;
+double kContainerHeight = 400;
+
+// tile container property
+double kTileContainerWidth = 299;
+double kTileContainerHeight = 82;
 
 // tile property
 double kTileSize = 38.2;
 double kBorderRadius = 8;
-double kXConst = 1.2 + kContainerWidth / (4 * kMagnificationWidth);
-double kYConst = 1.5 +
-    kContainerHeight *
-        (2 * kMagnificationHeight - 1) /
-        (4 * kMagnificationHeight);
+double kXConst = 1.2 + (kContainerWidth - kTileContainerWidth) / 2;
+double kYConst = 1.5 + (kContainerHeight - kTileContainerHeight) / 2;
 
 // tile color palette
 Color kYellow = const Color.fromARGB(128, 252, 200, 0);
