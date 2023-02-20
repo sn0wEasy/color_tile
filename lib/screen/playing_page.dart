@@ -54,7 +54,7 @@ class PlayingPage extends HookConsumerWidget {
                 ),
               ),
               Text(
-                '${ref.watch(displayContinuousTimeProvider)}',
+                ref.watch(displayContinuousTimeProvider),
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 30),
