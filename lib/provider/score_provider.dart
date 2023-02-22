@@ -60,8 +60,9 @@ final distanceScoreProvider = Provider<int>((ref) {
   return score;
 });
 
-// FIXME: スコア算出ロジックを改良する
+// トータルスコアを公開するプロバイダ
 final totalScoreProvider = Provider<int>((ref) {
+  // FIXME: スコア算出ロジックを改良する
   int distanceScore = ref.watch(displayDistanceScoreProvider);
   int timeScore = ref.watch(timeScoreProvider);
   int totalScore = distanceScore ~/ sqrt(timeScore);
