@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// Stopwatchの状態を管理するNotifier
+/// Stopwatchの状態を管理するNotifier
 class StopwatchNotifier extends StateNotifier<int> {
   StopwatchNotifier() : super(0);
   final Stopwatch timer = Stopwatch();
