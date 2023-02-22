@@ -11,7 +11,7 @@ import 'package:color_tile/model/block.dart';
 import 'package:color_tile/provider/block_provider.dart';
 
 class PlayingPage extends HookConsumerWidget {
-  PlayingPage({super.key});
+  const PlayingPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

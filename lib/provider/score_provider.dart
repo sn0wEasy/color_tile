@@ -15,7 +15,7 @@ double calcDistance(double x1, double y1, double x2, double y2) {
 final timeScoreProvider =
     StateProvider<int>((ref) => ref.watch(stopwatchDiscreteProvider) + 1);
 
-// push()が実行された時のDistanceScoreを通知するNotifire
+// push()が実行された時のDistanceScoreを通知するNotifier
 class SubmitDistanceScoreNotifier extends StateNotifier<int> {
   SubmitDistanceScoreNotifier(this.ref) : super(0);
 

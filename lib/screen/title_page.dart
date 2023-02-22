@@ -28,7 +28,7 @@ class MyHomePage extends ConsumerWidget {
                 ref.read(stopwatchContinuousProvider.notifier).start();
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => PlayingPage(),
+                    builder: (context) => const PlayingPage(),
                   ),
                 );
               },

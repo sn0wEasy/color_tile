@@ -5,11 +5,11 @@ import 'package:color_tile/screen/title_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(),
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext contest) => const MyHomePage(),
-        '/playing': (BuildContext context) => PlayingPage(),
+        '/playing': (BuildContext context) => const PlayingPage(),
         '/result': (BuildContext context) => const ResultPage(),
       },
     );
