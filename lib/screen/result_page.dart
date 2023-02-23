@@ -33,9 +33,15 @@ class ResultPage extends ConsumerWidget {
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
-            Text(
-              'Total Score: ${ref.watch(totalScoreProvider)}',
-              style: const TextStyle(fontSize: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Total Score: ${ref.watch(totalScoreProvider)}',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                DisplayScoreDiff(),
+              ],
             ),
             const SizedBox(height: 30),
             ElevatedButton(
@@ -43,6 +49,7 @@ class ResultPage extends ConsumerWidget {
                 ref.read(blockModelProvider.notifier).initCoordinate();
                 ref.read(stopwatchContinuousProvider.notifier).reset();
                 ref.read(stopwatchContinuousProvider.notifier).start();
+                ref.read(oldHighScoreProvider.notifier).updateHighScore();
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const PlayingPage(),
@@ -56,6 +63,7 @@ class ResultPage extends ConsumerWidget {
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();
                 ref.read(stopwatchContinuousProvider.notifier).reset();
+                ref.read(oldHighScoreProvider.notifier).updateHighScore();
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const MyHomePage(),
@@ -68,5 +76,21 @@ class ResultPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+}
+
+class DisplayScoreDiff extends ConsumerWidget {
+  const DisplayScoreDiff({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final scoreDiff = ref.watch(scoreDiffProvider);
+    if (scoreDiff > 0) {
+      return Text('+$scoreDiff');
+    } else {
+      return Container();
+    }
   }
 }

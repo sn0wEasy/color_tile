@@ -86,3 +86,28 @@ class HighScoreNotifier extends StateNotifier<int> {
 // ハイスコアを公開するプロバイダ
 final highScoreProvider = StateNotifierProvider<HighScoreNotifier, int>(
     (ref) => HighScoreNotifier(ref));
+
+// ハイスコアと最新スコアの比較用に古いハイスコアを管理するNotifier
+class OldHighScoreNotifier extends StateNotifier<int> {
+  OldHighScoreNotifier(this.ref) : super(0);
+
+  Ref ref;
+
+  void updateHighScore() {
+    final currentScore = ref.read(totalScoreProvider);
+    state = state >= currentScore ? state : currentScore;
+  }
+
+  int get getHighScore => state;
+}
+
+// ハイスコアと最新スコアの比較用に古いハイスコアを保持するプロバイダ
+final oldHighScoreProvider = StateNotifierProvider<OldHighScoreNotifier, int>(
+    (ref) => OldHighScoreNotifier(ref));
+
+// ハイスコアと最新スコアの差分を公開するプロバイダ
+final scoreDiffProvider = Provider<int>((ref) {
+  final highScore = ref.watch(oldHighScoreProvider);
+  final currentScore = ref.watch(totalScoreProvider);
+  return currentScore - highScore;
+});
