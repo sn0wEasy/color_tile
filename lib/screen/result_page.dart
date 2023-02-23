@@ -33,16 +33,7 @@ class ResultPage extends ConsumerWidget {
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Total Score: ${ref.watch(totalScoreProvider)}',
-                  style: const TextStyle(fontSize: 20),
-                ),
-                DisplayScoreDiff(),
-              ],
-            ),
+            TotalScoreResultComponents(),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
@@ -79,8 +70,8 @@ class ResultPage extends ConsumerWidget {
   }
 }
 
-class DisplayScoreDiff extends ConsumerWidget {
-  const DisplayScoreDiff({
+class TotalScoreResultComponents extends ConsumerWidget {
+  const TotalScoreResultComponents({
     Key? key,
   }) : super(key: key);
 
@@ -88,9 +79,31 @@ class DisplayScoreDiff extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scoreDiff = ref.watch(scoreDiffProvider);
     if (scoreDiff > 0) {
-      return Text('+$scoreDiff');
+      return Column(
+        children: [
+          Text('New Record!!', style: TextStyle(color: Colors.red)),
+          SizedBox(height: 5.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Total Score: ${ref.watch(totalScoreProvider)}',
+                style: const TextStyle(fontSize: 20),
+              ),
+              SizedBox(width: 5.0),
+              Text(
+                '+$scoreDiff',
+                style: TextStyle(color: Colors.red),
+              ),
+            ],
+          ),
+        ],
+      );
     } else {
-      return Container();
+      return Text(
+        'Total Score: ${ref.watch(totalScoreProvider)}',
+        style: const TextStyle(fontSize: 20),
+      );
     }
   }
 }
