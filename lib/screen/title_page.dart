@@ -1,4 +1,5 @@
 import 'package:color_tile/provider/block_provider.dart';
+import 'package:color_tile/provider/score_provider.dart';
 import 'package:color_tile/provider/time_provider.dart';
 import 'package:color_tile/screen/playing_page.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,11 @@ class MyHomePage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              'High Score: ${ref.watch(highScoreProvider)}',
+              style: const TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 50),
             const Text(
               'ARtile',
               style: TextStyle(

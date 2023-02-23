@@ -68,3 +68,21 @@ final totalScoreProvider = Provider<int>((ref) {
   int totalScore = distanceScore ~/ sqrt(timeScore);
   return totalScore;
 });
+
+// ハイスコアを管理するNotifier
+class HighScoreNotifier extends StateNotifier<int> {
+  HighScoreNotifier(this.ref) : super(0);
+
+  Ref ref;
+
+  void updateHighScore() {
+    final currentScore = ref.read(totalScoreProvider);
+    state = state >= currentScore ? state : currentScore;
+  }
+
+  int get getHighScore => state;
+}
+
+// ハイスコアを公開するプロバイダ
+final highScoreProvider = StateNotifierProvider<HighScoreNotifier, int>(
+    (ref) => HighScoreNotifier(ref));

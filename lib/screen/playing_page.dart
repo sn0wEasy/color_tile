@@ -63,6 +63,7 @@ class PlayingPage extends HookConsumerWidget {
                   ref.read(stopwatchContinuousProvider.notifier).stop();
                   ref.read(stopwatchDiscreteProvider.notifier).push();
                   ref.read(displayDistanceScoreProvider.notifier).push();
+                  ref.read(highScoreProvider.notifier).updateHighScore();
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const ResultPage(),
