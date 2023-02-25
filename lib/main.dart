@@ -1,10 +1,19 @@
+import 'package:color_tile/screen/sign_in_page.dart';
+import 'package:color_tile/screen/sign_out_page.dart';
+import 'package:color_tile/screen/sign_up_page.dart';
 import 'package:color_tile/screen/playing_page.dart';
 import 'package:color_tile/screen/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:color_tile/screen/title_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -17,7 +26,10 @@ class MyApp extends StatelessWidget {
       title: 'ARtile',
       home: const MyHomePage(),
       routes: <String, WidgetBuilder>{
-        '/home': (BuildContext contest) => const MyHomePage(),
+        '/home': (BuildContext context) => const MyHomePage(),
+        '/sign_up': (BuildContext context) => const SignUpPage(),
+        '/sign_in': (BuildContext context) => const SignInPage(),
+        '/sign_out': (BuildContext context) => const SignOutPage(),
         '/playing': (BuildContext context) => const PlayingPage(),
         '/result': (BuildContext context) => const ResultPage(),
       },
