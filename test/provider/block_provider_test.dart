@@ -1,5 +1,5 @@
-import 'package:color_tile/model/block.dart';
-import 'package:color_tile/provider/block_provider.dart';
+import 'package:color_tile/controllers/block.dart';
+import 'package:color_tile/controllers/block_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
