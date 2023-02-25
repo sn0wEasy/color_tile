@@ -1,7 +1,7 @@
-import 'package:color_tile/model/block.dart';
+import 'package:color_tile/controllers/block.dart';
 import 'package:color_tile/constants.dart';
-import 'package:color_tile/provider/block_provider.dart';
-import 'package:color_tile/provider/time_provider.dart';
+import 'package:color_tile/controllers/block_provider.dart';
+import 'package:color_tile/controllers/time_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math';
 import 'package:color_tile/logic/permutation.dart';

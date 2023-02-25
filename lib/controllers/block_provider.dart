@@ -1,4 +1,4 @@
-import 'package:color_tile/model/block.dart';
+import 'package:color_tile/controllers/block.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:color_tile/constants.dart';
 import 'package:quiver/iterables.dart';

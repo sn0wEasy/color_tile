@@ -1,6 +1,6 @@
-import 'package:color_tile/provider/block_provider.dart';
-import 'package:color_tile/provider/score_provider.dart';
-import 'package:color_tile/provider/time_provider.dart';
+import 'package:color_tile/controllers/block_provider.dart';
+import 'package:color_tile/controllers/score_provider.dart';
+import 'package:color_tile/controllers/time_provider.dart';
 import 'package:color_tile/screen/sign_in_page.dart';
 import 'package:color_tile/screen/sign_out_page.dart';
 import 'package:color_tile/screen/sign_up_page.dart';
