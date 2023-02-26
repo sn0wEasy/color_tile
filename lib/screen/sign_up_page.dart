@@ -46,6 +46,7 @@ class SignUpPage extends HookConsumerWidget {
             onPressed: () {
               _createAccount(idController.text, passwdController.text,
                   displayNameController.text);
+              _signIn(idController.text, passwdController.text);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const MyHomePage(),
@@ -60,7 +61,8 @@ class SignUpPage extends HookConsumerWidget {
   }
 }
 
-void _createAccount(String id, String pass, String displayName) async {
+Future<UserCredential?> _createAccount(
+    String id, String pass, String displayName) async {
   try {
     /// credential にはアカウント情報が記録される
     final credential =
@@ -73,7 +75,7 @@ void _createAccount(String id, String pass, String displayName) async {
     await credential.user?.updateDisplayName(displayName);
     print('Display name updated.');
 
-    _signIn(id, pass);
+    return credential;
   }
 
   /// アカウントに失敗した場合のエラー処理
@@ -96,7 +98,7 @@ void _createAccount(String id, String pass, String displayName) async {
   }
 }
 
-void _signIn(String id, String pass) async {
+Future<UserCredential?> _signIn(String id, String pass) async {
   try {
     /// credential にはアカウント情報が記録される
     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -105,6 +107,8 @@ void _signIn(String id, String pass) async {
     );
     print('Credintial: ');
     print(FirebaseAuth.instance.currentUser);
+
+    return credential;
   }
 
   /// サインインに失敗した場合のエラー処理
