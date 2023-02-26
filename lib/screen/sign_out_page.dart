@@ -15,6 +15,7 @@ class SignOutPage extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('サインアウトしますか？'),
+            const SizedBox(height: 10),
 
             /// Yes
             ElevatedButton(

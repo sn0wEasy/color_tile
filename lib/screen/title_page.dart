@@ -16,6 +16,22 @@ class MyHomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     print('Current User: ');
     print(FirebaseAuth.instance.currentUser?.email);
+
+    Widget currentUser() {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      final currentUserEmail = currentUser?.email;
+      final currentUserName = currentUser?.displayName;
+      print('currentUserName:');
+      print(currentUserName);
+      if (currentUserName != null) {
+        return Text(currentUserName);
+      } else if (currentUserEmail != null) {
+        return Text(currentUserEmail);
+      } else {
+        return const Text('Guest');
+      }
+    }
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -33,6 +49,14 @@ class MyHomePage extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('現在のユーザ：'),
+                currentUser(),
+              ],
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 ref.read(blockModelProvider.notifier).initCoordinate();

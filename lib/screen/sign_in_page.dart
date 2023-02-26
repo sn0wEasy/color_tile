@@ -44,6 +44,10 @@ class SignInPage extends HookConsumerWidget {
             },
             child: Text('push'),
           ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('back'),
+          ),
         ],
       ),
     );
