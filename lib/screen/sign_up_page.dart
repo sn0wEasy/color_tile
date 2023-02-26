@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:color_tile/controllers/user.dart';
+import 'package:color_tile/controllers/user_provider.dart';
 
 class SignUpPage extends HookConsumerWidget {
   const SignUpPage({super.key});
@@ -12,6 +14,15 @@ class SignUpPage extends HookConsumerWidget {
     final idController = useTextEditingController();
     final passwdController = useTextEditingController();
     final displayNameController = useTextEditingController();
+
+    UserState userState = UserState(
+      id: idController.text,
+      password: passwdController.text,
+      displayName: displayNameController.text,
+    );
+
+    AsyncValue<UserCredential> userCredential =
+        ref.watch(userCreateProvider(userState));
 
     return Scaffold(
       body: Column(
