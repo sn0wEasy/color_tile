@@ -1,3 +1,5 @@
+import 'package:color_tile/controllers/login_provider.dart';
+import 'package:color_tile/controllers/user_provider.dart';
 import 'package:color_tile/screen/title_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +13,52 @@ class SignInPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final idController = useTextEditingController();
     final passwdController = useTextEditingController();
+    final isLoading = useState(false);
+
+    ref.listen<AsyncValue<void>>(
+      loginStateProvider,
+      (_, next) async {
+        if (next.isLoading) {
+          // ローディングを表示する
+          isLoading.value = true;
+          return;
+        }
+
+        await next.when(
+          data: (_) async {
+            // ローディングを非表示にする
+            isLoading.value = false;
+
+            // ログインできたらスナックバーでメッセージを表示してホーム画面に遷移する
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('ログインしました！'),
+              ),
+            );
+
+            await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const MyHomePage(),
+              ),
+            );
+          },
+          error: (e, s) async {
+            // ローディングを非表示にする
+            isLoading.value = false;
+
+            // エラーが発生したらエラーダイアログを表示する
+            await showDialog<void>(
+              context: context,
+              builder: (context) => Text(e.toString()),
+            );
+          },
+          loading: () {
+            // ローディングを表示する
+            isLoading.value = true;
+          },
+        );
+      },
+    );
 
     return Scaffold(
       body: Column(
@@ -35,12 +83,9 @@ class SignInPage extends HookConsumerWidget {
           /// 送信
           ElevatedButton(
             onPressed: () {
-              _signIn(idController.text, passwdController.text);
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const MyHomePage(),
-                ),
-              );
+              // ref
+              //     .read(userServiceProvider)
+              //     .login(idController.text, passwdController.text);
             },
             child: Text('push'),
           ),

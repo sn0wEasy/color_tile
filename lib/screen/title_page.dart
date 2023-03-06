@@ -1,6 +1,8 @@
 import 'package:color_tile/controllers/block_provider.dart';
 import 'package:color_tile/controllers/score_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
+import 'package:color_tile/controllers/user_provider.dart';
+import 'package:color_tile/screen/register_page.dart';
 import 'package:color_tile/screen/sign_in_page.dart';
 import 'package:color_tile/screen/sign_out_page.dart';
 import 'package:color_tile/screen/sign_up_page.dart';
@@ -14,23 +16,7 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('Current User: ');
-    print(FirebaseAuth.instance.currentUser?.email);
-
-    Widget currentUser() {
-      final currentUser = FirebaseAuth.instance.currentUser;
-      final currentUserEmail = currentUser?.email;
-      final currentUserName = currentUser?.displayName;
-      print('currentUserName:');
-      print(currentUserName);
-      if (currentUserName != null) {
-        return Text(currentUserName);
-      } else if (currentUserEmail != null) {
-        return Text(currentUserEmail);
-      } else {
-        return const Text('Guest');
-      }
-    }
+    final currentUser = ref.watch(userServiceProvider);
 
     return Scaffold(
       body: Center(
@@ -49,13 +35,7 @@ class MyHomePage extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('現在のユーザ：'),
-                currentUser(),
-              ],
-            ),
+            Text('現在のユーザ：$currentUser'),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -75,33 +55,11 @@ class MyHomePage extends ConsumerWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const SignUpPage(),
+                    builder: (context) => RegisterPage(),
                   ),
                 );
               },
-              child: const Text('sign up'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const SignInPage(),
-                  ),
-                );
-              },
-              child: const Text('sign in'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const SignOutPage(),
-                  ),
-                );
-              },
-              child: const Text('sign out'),
+              child: const Text('register'),
             ),
           ],
         ),

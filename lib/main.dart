@@ -1,3 +1,4 @@
+import 'package:color_tile/screen/register_page.dart';
 import 'package:color_tile/screen/sign_in_page.dart';
 import 'package:color_tile/screen/sign_out_page.dart';
 import 'package:color_tile/screen/sign_up_page.dart';
@@ -27,9 +28,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(),
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => const MyHomePage(),
-        '/sign_up': (BuildContext context) => const SignUpPage(),
-        '/sign_in': (BuildContext context) => const SignInPage(),
-        '/sign_out': (BuildContext context) => const SignOutPage(),
+        '/register': (BuildContext context) => RegisterPage(),
         '/playing': (BuildContext context) => const PlayingPage(),
         '/result': (BuildContext context) => const ResultPage(),
       },
