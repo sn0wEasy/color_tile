@@ -1,7 +1,4 @@
 import 'package:color_tile/screen/register_page.dart';
-import 'package:color_tile/screen/sign_in_page.dart';
-import 'package:color_tile/screen/sign_out_page.dart';
-import 'package:color_tile/screen/sign_up_page.dart';
 import 'package:color_tile/screen/playing_page.dart';
 import 'package:color_tile/screen/result_page.dart';
 import 'package:flutter/material.dart';
