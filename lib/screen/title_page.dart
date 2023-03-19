@@ -46,7 +46,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               ),
             ),
             const SizedBox(height: 30),
-            Text('現在のユーザ：$currentUser'),
+            Text('表示名：$currentUser'),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
