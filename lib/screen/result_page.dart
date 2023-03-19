@@ -11,6 +11,11 @@ class ResultPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final time = ref.watch(displayDiscreteTimeProvider);
+    final accuracy = ref.watch(displayDistanceScoreProvider);
+    final totalScore = ref.watch(totalScoreProvider);
+    final totalScoreDiff = ref.watch(scoreDiffProvider);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -24,16 +29,19 @@ class ResultPage extends ConsumerWidget {
             ),
             const SizedBox(height: 30),
             Text(
-              'Time: ${ref.watch(displayDiscreteTimeProvider)}',
+              'Time: $time',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
             Text(
-              'Accuracy: ${ref.watch(displayDistanceScoreProvider)}',
+              'Accuracy: $accuracy',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 30),
-            TotalScoreResultComponents(),
+            TotalScoreResultComponents(
+              totalScore: totalScore,
+              scoreDiff: totalScoreDiff,
+            ),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
@@ -41,6 +49,7 @@ class ResultPage extends ConsumerWidget {
                 ref.read(stopwatchContinuousProvider.notifier).reset();
                 ref.read(stopwatchContinuousProvider.notifier).start();
                 ref.read(oldHighScoreProvider.notifier).updateHighScore();
+
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const PlayingPage(),
@@ -70,14 +79,18 @@ class ResultPage extends ConsumerWidget {
   }
 }
 
-class TotalScoreResultComponents extends ConsumerWidget {
+class TotalScoreResultComponents extends StatelessWidget {
   const TotalScoreResultComponents({
     Key? key,
+    required this.totalScore,
+    required this.scoreDiff,
   }) : super(key: key);
 
+  final int totalScore;
+  final int scoreDiff;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final scoreDiff = ref.watch(scoreDiffProvider);
+  Widget build(BuildContext context) {
     if (scoreDiff > 0) {
       return Column(
         children: [
@@ -87,7 +100,7 @@ class TotalScoreResultComponents extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Total Score: ${ref.watch(totalScoreProvider)}',
+                'Total Score: $totalScore',
                 style: const TextStyle(fontSize: 20),
               ),
               SizedBox(width: 5.0),
@@ -101,7 +114,7 @@ class TotalScoreResultComponents extends ConsumerWidget {
       );
     } else {
       return Text(
-        'Total Score: ${ref.watch(totalScoreProvider)}',
+        'Total Score: $totalScore',
         style: const TextStyle(fontSize: 20),
       );
     }

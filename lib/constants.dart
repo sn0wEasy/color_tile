@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+// firebase realtime database URL
+String databaseURL =
+    'https://artile-24962-default-rtdb.asia-southeast1.firebasedatabase.app/';
+
 // container property
 double kContainerWidth = 400;
 double kContainerHeight = 400;

@@ -21,10 +21,12 @@ dependencies:
   firebase_core: ^2.7.0
   firebase_auth: ^4.2.9
   firebase_database: ^10.0.15
+  device_info_plus: ^8.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.6.1
 
   flutter_lints: ^2.0.0
   freezed: ^2.3.2

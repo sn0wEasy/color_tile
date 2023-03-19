@@ -1,14 +1,20 @@
 import 'package:color_tile/component/constant_block.dart';
 import 'package:color_tile/component/movable_block.dart';
 import 'package:color_tile/constants.dart';
+import 'package:color_tile/controllers/device_id_provider.dart';
+import 'package:color_tile/controllers/record.dart';
 import 'package:color_tile/controllers/score_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
+import 'package:color_tile/controllers/user_profile.dart';
+import 'package:color_tile/controllers/user_profile_controller.dart';
 import 'package:color_tile/screen/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';
 import 'package:color_tile/controllers/block.dart';
 import 'package:color_tile/controllers/block_provider.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class PlayingPage extends HookConsumerWidget {
   const PlayingPage({super.key});
@@ -59,11 +65,19 @@ class PlayingPage extends HookConsumerWidget {
               ),
               const SizedBox(height: 30),
               TextButton(
-                onPressed: () {
+                onPressed: () async {
                   ref.read(stopwatchContinuousProvider.notifier).stop();
                   ref.read(stopwatchDiscreteProvider.notifier).push();
                   ref.read(displayDistanceScoreProvider.notifier).push();
                   ref.read(highScoreProvider.notifier).updateHighScore();
+
+                  /// ハイスコアをDBに送信する
+                  if (ref.watch(scoreDiffProvider) > 0) {
+                    ref
+                        .read(userProfileNotifierProvider.notifier)
+                        .updateBestRecord();
+                  }
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const ResultPage(),
