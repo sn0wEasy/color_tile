@@ -20,8 +20,9 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserProfile {
-  String? get displayName => throw _privateConstructorUsedError;
-  String? get platform => throw _privateConstructorUsedError;
+  String get deviceId => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
+  String get platform => throw _privateConstructorUsedError;
   Record? get bestRecord => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,11 @@ abstract class $UserProfileCopyWith<$Res> {
           UserProfile value, $Res Function(UserProfile) then) =
       _$UserProfileCopyWithImpl<$Res, UserProfile>;
   @useResult
-  $Res call({String? displayName, String? platform, Record? bestRecord});
+  $Res call(
+      {String deviceId,
+      String displayName,
+      String platform,
+      Record? bestRecord});
 
   $RecordCopyWith<$Res>? get bestRecord;
 }
@@ -54,19 +59,24 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? displayName = freezed,
-    Object? platform = freezed,
+    Object? deviceId = null,
+    Object? displayName = null,
+    Object? platform = null,
     Object? bestRecord = freezed,
   }) {
     return _then(_value.copyWith(
-      displayName: freezed == displayName
+      deviceId: null == deviceId
+          ? _value.deviceId
+          : deviceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: null == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: freezed == platform
+              as String,
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       bestRecord: freezed == bestRecord
           ? _value.bestRecord
           : bestRecord // ignore: cast_nullable_to_non_nullable
@@ -95,7 +105,11 @@ abstract class _$$_UserProfileCopyWith<$Res>
       __$$_UserProfileCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? displayName, String? platform, Record? bestRecord});
+  $Res call(
+      {String deviceId,
+      String displayName,
+      String platform,
+      Record? bestRecord});
 
   @override
   $RecordCopyWith<$Res>? get bestRecord;
@@ -112,19 +126,24 @@ class __$$_UserProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? displayName = freezed,
-    Object? platform = freezed,
+    Object? deviceId = null,
+    Object? displayName = null,
+    Object? platform = null,
     Object? bestRecord = freezed,
   }) {
     return _then(_$_UserProfile(
-      displayName: freezed == displayName
+      deviceId: null == deviceId
+          ? _value.deviceId
+          : deviceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      displayName: null == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: freezed == platform
+              as String,
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       bestRecord: freezed == bestRecord
           ? _value.bestRecord
           : bestRecord // ignore: cast_nullable_to_non_nullable
@@ -136,21 +155,27 @@ class __$$_UserProfileCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserProfile implements _UserProfile {
-  const _$_UserProfile({this.displayName, this.platform, this.bestRecord});
+  const _$_UserProfile(
+      {required this.deviceId,
+      required this.displayName,
+      required this.platform,
+      this.bestRecord});
 
   factory _$_UserProfile.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileFromJson(json);
 
   @override
-  final String? displayName;
+  final String deviceId;
   @override
-  final String? platform;
+  final String displayName;
+  @override
+  final String platform;
   @override
   final Record? bestRecord;
 
   @override
   String toString() {
-    return 'UserProfile(displayName: $displayName, platform: $platform, bestRecord: $bestRecord)';
+    return 'UserProfile(deviceId: $deviceId, displayName: $displayName, platform: $platform, bestRecord: $bestRecord)';
   }
 
   @override
@@ -158,6 +183,8 @@ class _$_UserProfile implements _UserProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserProfile &&
+            (identical(other.deviceId, deviceId) ||
+                other.deviceId == deviceId) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
             (identical(other.platform, platform) ||
@@ -169,7 +196,7 @@ class _$_UserProfile implements _UserProfile {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, displayName, platform, bestRecord);
+      Object.hash(runtimeType, deviceId, displayName, platform, bestRecord);
 
   @JsonKey(ignore: true)
   @override
@@ -187,17 +214,20 @@ class _$_UserProfile implements _UserProfile {
 
 abstract class _UserProfile implements UserProfile {
   const factory _UserProfile(
-      {final String? displayName,
-      final String? platform,
+      {required final String deviceId,
+      required final String displayName,
+      required final String platform,
       final Record? bestRecord}) = _$_UserProfile;
 
   factory _UserProfile.fromJson(Map<String, dynamic> json) =
       _$_UserProfile.fromJson;
 
   @override
-  String? get displayName;
+  String get deviceId;
   @override
-  String? get platform;
+  String get displayName;
+  @override
+  String get platform;
   @override
   Record? get bestRecord;
   @override

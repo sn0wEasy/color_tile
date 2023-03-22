@@ -1,3 +1,4 @@
+import 'package:color_tile/screen/ranking_page.dart';
 import 'package:color_tile/screen/register_page.dart';
 import 'package:color_tile/screen/playing_page.dart';
 import 'package:color_tile/screen/result_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/register': (BuildContext context) => RegisterPage(),
         '/playing': (BuildContext context) => const PlayingPage(),
         '/result': (BuildContext context) => const ResultPage(),
+        '/ranking': (BuildContext context) => const RankingPage(),
       },
     );
   }

@@ -1,9 +1,11 @@
 import 'package:color_tile/controllers/auth_controller.dart';
 import 'package:color_tile/controllers/block_provider.dart';
 import 'package:color_tile/controllers/device_id_provider.dart';
+import 'package:color_tile/controllers/ranking_controller.dart';
 import 'package:color_tile/controllers/score_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
 import 'package:color_tile/controllers/user_profile_controller.dart';
+import 'package:color_tile/screen/ranking_page.dart';
 import 'package:color_tile/screen/register_page.dart';
 import 'package:color_tile/screen/playing_page.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +76,21 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                 );
               },
               child: const Text('register'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () async {
+                await ref
+                    .read(rankingNotifierProvider.notifier)
+                    .updateBestRecordRanking();
+
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const RankingPage(),
+                  ),
+                );
+              },
+              child: const Text('ranking'),
             ),
           ],
         ),
