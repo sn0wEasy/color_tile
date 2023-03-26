@@ -11,17 +11,22 @@ class UserProfileNotifier extends StateNotifier<UserProfile?> {
   UserProfileNotifier(this.ref) : super(null);
 
   // ユーザプロファイルを初期化
-  void init() async {
-    ref.read(userProfileRepositoryProvider).initUserProfile();
+  Future<void> init() async {
+    final userProfile =
+        await ref.read(userProfileRepositoryProvider).userProfile;
+    if (userProfile == null) {
+      await ref.read(userProfileRepositoryProvider).updateDisplayName();
+      await ref.read(userProfileRepositoryProvider).updatePlatform();
+    }
   }
 
   // 表示名を更新
-  void updateDisplayName() async {
-    ref.read(userProfileRepositoryProvider).updateDisplayName();
+  Future<void> updateDisplayName() async {
+    await ref.read(userProfileRepositoryProvider).updateDisplayName();
   }
 
   // ベストレコードを更新
-  void updateBestRecord() async {
-    ref.read(userProfileRepositoryProvider).updateBestRecord();
+  Future<void> updateBestRecord() async {
+    await ref.read(userProfileRepositoryProvider).updateBestRecord();
   }
 }

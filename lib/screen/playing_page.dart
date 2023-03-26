@@ -13,7 +13,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';
 import 'package:color_tile/controllers/block.dart';
 import 'package:color_tile/controllers/block_provider.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class PlayingPage extends HookConsumerWidget {
@@ -72,7 +71,7 @@ class PlayingPage extends HookConsumerWidget {
                   ref.read(highScoreProvider.notifier).updateHighScore();
 
                   /// ハイスコアをDBに送信する
-                  if (ref.watch(scoreDiffProvider) > 0) {
+                  if (await ref.watch(scoreDiffProvider.future) > 0) {
                     ref
                         .read(userProfileNotifierProvider.notifier)
                         .updateBestRecord();

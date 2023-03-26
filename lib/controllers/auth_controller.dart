@@ -31,7 +31,7 @@ class AuthController extends StateNotifier<User?> {
   }
 
   // アプリ開始
-  void appStarted() async {
+  Future<void> appStarted() async {
     // Currentユーザを取得
     final user = ref.read(authRepositoryProvider).getCurrentUser();
     // ログインされていなければ、匿名でサインインしてログインさせる。
@@ -41,7 +41,7 @@ class AuthController extends StateNotifier<User?> {
   }
 
   // サインアウト
-  void signOut() async {
+  Future<void> signOut() async {
     // サインアウトメソッド
     await ref.read(authRepositoryProvider).signOut();
   }

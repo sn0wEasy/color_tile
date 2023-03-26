@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '908752088350',
     projectId: 'artile-24962',
     authDomain: 'artile-24962.firebaseapp.com',
+    databaseURL: 'https://artile-24962-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'artile-24962.appspot.com',
     measurementId: 'G-W5TK5X0KB3',
   );
@@ -58,6 +62,7 @@ class DefaultFirebaseOptions {
     appId: '1:908752088350:android:337bda66c4f23272ed6d0f',
     messagingSenderId: '908752088350',
     projectId: 'artile-24962',
+    databaseURL: 'https://artile-24962-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'artile-24962.appspot.com',
   );
 
@@ -66,20 +71,9 @@ class DefaultFirebaseOptions {
     appId: '1:908752088350:ios:65bf1e15c39048a0ed6d0f',
     messagingSenderId: '908752088350',
     projectId: 'artile-24962',
+    databaseURL: 'https://artile-24962-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'artile-24962.appspot.com',
-    iosClientId:
-        '908752088350-pl6isj0cb4rcit9ffeab79c8tgdnth5e.apps.googleusercontent.com',
-    iosBundleId: 'com.example.colorTile',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBE4x7Y4GOKz7IbkhzLKDLHeWkWvPGNncs',
-    appId: '1:908752088350:ios:65bf1e15c39048a0ed6d0f',
-    messagingSenderId: '908752088350',
-    projectId: 'artile-24962',
-    storageBucket: 'artile-24962.appspot.com',
-    iosClientId:
-        '908752088350-pl6isj0cb4rcit9ffeab79c8tgdnth5e.apps.googleusercontent.com',
+    iosClientId: '908752088350-pl6isj0cb4rcit9ffeab79c8tgdnth5e.apps.googleusercontent.com',
     iosBundleId: 'com.example.colorTile',
   );
 }

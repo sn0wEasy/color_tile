@@ -1,10 +1,9 @@
 import 'package:color_tile/controllers/auth_controller.dart';
 import 'package:color_tile/controllers/block_provider.dart';
-import 'package:color_tile/controllers/device_id_provider.dart';
 import 'package:color_tile/controllers/ranking_controller.dart';
-import 'package:color_tile/controllers/score_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
 import 'package:color_tile/controllers/user_profile_controller.dart';
+import 'package:color_tile/repositories/user_profile_repository.dart';
 import 'package:color_tile/screen/ranking_page.dart';
 import 'package:color_tile/screen/register_page.dart';
 import 'package:color_tile/screen/playing_page.dart';
@@ -23,22 +22,38 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   void initState() {
     super.initState();
     Future(() async {
-      ref.read(authControllerProvider.notifier).appStarted();
+      await ref.read(authControllerProvider.notifier).appStarted();
+      await ref.read(userProfileNotifierProvider.notifier).init();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = ref.watch(displayNameProvider);
+    final highScore = ref.read(userProfileRepositoryProvider).highScore;
+    final displayName = ref.read(userProfileRepositoryProvider).displayName;
 
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'High Score: ${ref.watch(highScoreProvider)}',
-              style: const TextStyle(fontSize: 20),
+            FutureBuilder<int>(
+              future: highScore,
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                    return const Text("none");
+                  case ConnectionState.waiting:
+                    return const Text("loading...");
+                  case ConnectionState.active:
+                    return const Text("active");
+                  case ConnectionState.done:
+                    return Text(
+                      'High Score: ${snapshot.data}',
+                      style: const TextStyle(fontSize: 20),
+                    );
+                }
+              },
             ),
             const SizedBox(height: 50),
             const Text(
@@ -48,7 +63,24 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               ),
             ),
             const SizedBox(height: 30),
-            Text('表示名：$currentUser'),
+            FutureBuilder<String>(
+              future: displayName,
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                    return const Text("none");
+                  case ConnectionState.waiting:
+                    return const Text("loading...");
+                  case ConnectionState.active:
+                    return const Text("active");
+                  case ConnectionState.done:
+                    return Text(
+                      'ユーザ名：${snapshot.data}',
+                      style: const TextStyle(fontSize: 20),
+                    );
+                }
+              },
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {

@@ -16,63 +16,65 @@ class ResultPage extends ConsumerWidget {
     final totalScore = ref.watch(totalScoreProvider);
     final totalScoreDiff = ref.watch(scoreDiffProvider);
 
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Result',
-              style: TextStyle(
-                fontSize: 30,
+    return totalScoreDiff.when(
+      loading: () => const CircularProgressIndicator(),
+      error: (err, _) => Text('Error: $err'),
+      data: (totalScoreDiff) => Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Result',
+                style: TextStyle(
+                  fontSize: 30,
+                ),
               ),
-            ),
-            const SizedBox(height: 30),
-            Text(
-              'Time: $time',
-              style: const TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 30),
-            Text(
-              'Accuracy: $accuracy',
-              style: const TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 30),
-            TotalScoreResultComponents(
-              totalScore: totalScore,
-              scoreDiff: totalScoreDiff,
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                ref.read(blockModelProvider.notifier).initCoordinate();
-                ref.read(stopwatchContinuousProvider.notifier).reset();
-                ref.read(stopwatchContinuousProvider.notifier).start();
-                ref.read(oldHighScoreProvider.notifier).updateHighScore();
+              const SizedBox(height: 30),
+              Text(
+                'Time: $time',
+                style: const TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 30),
+              Text(
+                'Accuracy: $accuracy',
+                style: const TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 30),
+              TotalScoreResultComponents(
+                totalScore: totalScore,
+                scoreDiff: totalScoreDiff,
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(blockModelProvider.notifier).initCoordinate();
+                  ref.read(stopwatchContinuousProvider.notifier).reset();
+                  ref.read(stopwatchContinuousProvider.notifier).start();
 
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const PlayingPage(),
-                  ),
-                );
-              },
-              child: const Text('Continue'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                ref.read(blockModelProvider.notifier).initCoordinate();
-                ref.read(stopwatchContinuousProvider.notifier).reset();
-                ref.read(oldHighScoreProvider.notifier).updateHighScore();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const MyHomePage(),
-                  ),
-                );
-              },
-              child: const Text('Back to Title'),
-            ),
-          ],
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const PlayingPage(),
+                    ),
+                  );
+                },
+                child: const Text('Continue'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(blockModelProvider.notifier).initCoordinate();
+                  ref.read(stopwatchContinuousProvider.notifier).reset();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const MyHomePage(),
+                    ),
+                  );
+                },
+                child: const Text('Back to Title'),
+              ),
+            ],
+          ),
         ),
       ),
     );

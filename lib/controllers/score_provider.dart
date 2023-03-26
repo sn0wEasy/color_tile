@@ -2,6 +2,7 @@ import 'package:color_tile/controllers/block.dart';
 import 'package:color_tile/constants.dart';
 import 'package:color_tile/controllers/block_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
+import 'package:color_tile/repositories/user_profile_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math';
 import 'package:color_tile/logic/permutation.dart';
@@ -87,27 +88,15 @@ class HighScoreNotifier extends StateNotifier<int> {
 final highScoreProvider = StateNotifierProvider<HighScoreNotifier, int>(
     (ref) => HighScoreNotifier(ref));
 
-// ハイスコアと最新スコアの比較用に古いハイスコアを管理するNotifier
-class OldHighScoreNotifier extends StateNotifier<int> {
-  OldHighScoreNotifier(this.ref) : super(0);
-
-  Ref ref;
-
-  void updateHighScore() {
-    final currentScore = ref.read(totalScoreProvider);
-    state = state >= currentScore ? state : currentScore;
-  }
-
-  int get getHighScore => state;
-}
-
-// ハイスコアと最新スコアの比較用に古いハイスコアを保持するプロバイダ
-final oldHighScoreProvider = StateNotifierProvider<OldHighScoreNotifier, int>(
-    (ref) => OldHighScoreNotifier(ref));
-
 // ハイスコアと最新スコアの差分を公開するプロバイダ
-final scoreDiffProvider = Provider<int>((ref) {
-  final highScore = ref.watch(oldHighScoreProvider);
+final scoreDiffProvider = FutureProvider<int>((ref) async {
   final currentScore = ref.watch(totalScoreProvider);
-  return currentScore - highScore;
+
+  final userProfile =
+      await ref.watch(userProfileRepositoryProvider).userProfile;
+  if (userProfile != null && userProfile.bestRecord != null) {
+    return currentScore - userProfile.bestRecord!.totalScore;
+  } else {
+    return currentScore;
+  }
 });

@@ -29,7 +29,7 @@ class RegisterPage extends HookConsumerWidget {
           ElevatedButton(
             onPressed: () async {
               ref.read(displayNameProvider.notifier).state = controller.text;
-              ref
+              await ref
                   .read(userProfileNotifierProvider.notifier)
                   .updateDisplayName();
 

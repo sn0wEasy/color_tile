@@ -17,6 +17,7 @@ class RankingNotifier extends StateNotifier<List<RankingElement>?> {
     final deviceId = await ref.watch(deviceIdProvider.future);
     final userProfileList =
         await ref.read(userProfileRepositoryProvider).getUserProfileList;
+    print(userProfileList);
     List<RankingElement> ranking = <RankingElement>[];
     for (UserProfile e in userProfileList) {
       if (e.bestRecord != null) {
@@ -31,7 +32,6 @@ class RankingNotifier extends StateNotifier<List<RankingElement>?> {
       }
     }
     ranking.sort(((e1, e2) => -1 * e1.totalScore.compareTo(e2.totalScore)));
-    print(ranking);
     state = [...ranking];
   }
 }
