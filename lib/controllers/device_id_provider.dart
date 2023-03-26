@@ -24,7 +24,7 @@ final deviceIdProvider = FutureProvider<String>((ref) async {
 
 final targetPlatformProvider = Provider<String>((ref) {
   if (kIsWeb) {
-    return 'WebBrowser';
+    return 'webBrowser';
   } else {
     return Platform.operatingSystem;
   }
