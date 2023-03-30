@@ -1,6 +1,7 @@
 import 'package:color_tile/controllers/ranking_controller.dart';
 import 'package:color_tile/controllers/ranking_element.dart';
 import 'package:color_tile/screen/title_page.dart';
+import 'package:color_tile/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,7 +21,7 @@ class RankingPage extends ConsumerWidget {
             SizedBox(height: 10),
             ...createRankingList(rankingElements),
             SizedBox(height: 10),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

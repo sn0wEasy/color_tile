@@ -2,6 +2,7 @@ import 'package:color_tile/controllers/block_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
 import 'package:color_tile/screen/playing_page.dart';
 import 'package:color_tile/screen/title_page.dart';
+import 'package:color_tile/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:color_tile/controllers/score_provider.dart';
@@ -46,7 +47,7 @@ class ResultPage extends ConsumerWidget {
                 scoreDiff: totalScoreDiff,
               ),
               const SizedBox(height: 30),
-              ElevatedButton(
+              CustomElevatedButton(
                 onPressed: () {
                   ref.read(blockModelProvider.notifier).initCoordinate();
                   ref.read(stopwatchContinuousProvider.notifier).reset();
@@ -61,7 +62,7 @@ class ResultPage extends ConsumerWidget {
                 child: const Text('Continue'),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              CustomElevatedButton(
                 onPressed: () {
                   ref.read(blockModelProvider.notifier).initCoordinate();
                   ref.read(stopwatchContinuousProvider.notifier).reset();

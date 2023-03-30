@@ -5,6 +5,7 @@ import 'package:color_tile/controllers/score_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
 import 'package:color_tile/controllers/user_profile_controller.dart';
 import 'package:color_tile/screen/result_page.dart';
+import 'package:color_tile/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:quiver/iterables.dart';
@@ -59,7 +60,7 @@ class PlayingPage extends HookConsumerWidget {
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 30),
-              TextButton(
+              CustomElevatedButton(
                 onPressed: () async {
                   ref.read(stopwatchContinuousProvider.notifier).stop();
                   ref.read(stopwatchDiscreteProvider.notifier).push();
@@ -79,7 +80,7 @@ class PlayingPage extends HookConsumerWidget {
                     ),
                   );
                 },
-                child: const Text('submit'),
+                child: const Text('Submit'),
               ),
             ],
           ),

@@ -7,6 +7,7 @@ import 'package:color_tile/repositories/user_profile_repository.dart';
 import 'package:color_tile/screen/ranking_page.dart';
 import 'package:color_tile/screen/register_page.dart';
 import 'package:color_tile/screen/playing_page.dart';
+import 'package:color_tile/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -82,7 +83,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               },
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 ref.read(userProfileNotifierProvider.notifier).init();
                 ref.read(blockModelProvider.notifier).initCoordinate();
@@ -94,10 +95,10 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                   ),
                 );
               },
-              child: const Text('スタート'),
+              child: const Text('Play'),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () {
                 ref.read(userProfileNotifierProvider.notifier).init();
 
@@ -107,10 +108,10 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                   ),
                 );
               },
-              child: const Text('ユーザ名登録'),
+              child: const Text('Edit name'),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
+            CustomElevatedButton(
               onPressed: () async {
                 await ref
                     .read(rankingNotifierProvider.notifier)
@@ -122,7 +123,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                   ),
                 );
               },
-              child: const Text('ランキング'),
+              child: const Text('Ranking'),
             ),
           ],
         ),
