@@ -1,13 +1,10 @@
-import 'package:color_tile/constants.dart';
 import 'package:color_tile/controllers/device_id_provider.dart';
 import 'package:color_tile/controllers/record.dart';
 import 'package:color_tile/controllers/score_provider.dart';
 import 'package:color_tile/controllers/time_provider.dart';
 import 'package:color_tile/controllers/user_profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 // 抽象クラスを定義
 abstract class BaseUserProfileRepository {

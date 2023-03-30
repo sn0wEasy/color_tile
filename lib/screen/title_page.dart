@@ -94,7 +94,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                   ),
                 );
               },
-              child: const Text('start'),
+              child: const Text('スタート'),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -107,7 +107,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                   ),
                 );
               },
-              child: const Text('register'),
+              child: const Text('ユーザ名登録'),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -122,7 +122,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                   ),
                 );
               },
-              child: const Text('ranking'),
+              child: const Text('ランキング'),
             ),
           ],
         ),
