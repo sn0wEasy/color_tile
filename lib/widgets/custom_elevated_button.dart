@@ -10,8 +10,8 @@ class CustomElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+      style: ElevatedButton.styleFrom(fixedSize: const Size(150, 30)),
       child: child,
-      style: ElevatedButton.styleFrom(fixedSize: Size(150, 30)),
     );
   }
 }

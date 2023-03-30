@@ -29,7 +29,7 @@ class RankingPage extends ConsumerWidget {
                   ),
                 );
               },
-              child: Text('back'),
+              child: Text('Back'),
             ),
           ],
         ),
