@@ -1,4 +1,3 @@
-import 'package:color_tile/color_schemes.g.dart';
 import 'package:color_tile/controllers/device_id_provider.dart';
 import 'package:color_tile/controllers/ranking_controller.dart';
 import 'package:color_tile/controllers/ranking_element.dart';
@@ -53,11 +52,11 @@ class RankingPage extends ConsumerWidget {
                 ? Theme.of(context).colorScheme.inversePrimary
                 : Theme.of(context).colorScheme.surface;
             final platformIcon = e.platform == 'ios' || e.platform == 'android'
-                ? Icon(
+                ? const Icon(
                     Icons.smartphone,
                     size: 20,
                   )
-                : Icon(
+                : const Icon(
                     Icons.computer,
                     size: 20,
                   );
