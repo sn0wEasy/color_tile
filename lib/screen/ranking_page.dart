@@ -16,28 +16,39 @@ class RankingPage extends ConsumerWidget {
     final deviceId = ref.watch(deviceIdProvider);
 
     return deviceId.when(
-      loading: () => CircularProgressIndicator(),
+      loading: () => const CircularProgressIndicator(),
       error: (err, _) => Text('$err'),
       data: (deviceId) => Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('トータルスコアランキング'),
-              SizedBox(height: 10),
-              ...createRankingList(context, rankingElements, deviceId),
-              SizedBox(height: 10),
-              CustomElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const MyHomePage(),
-                    ),
-                  );
-                },
-                child: Text('Back'),
-              ),
-            ],
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 20),
+                Text('トータルスコアランキング'),
+                SizedBox(height: 10),
+                SizedBox(
+                  width: 350,
+                  height: 500,
+                  child: ListView(
+                    children: [
+                      ...createRankingList(context, rankingElements, deviceId),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                CustomElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const MyHomePage(),
+                      ),
+                    );
+                  },
+                  child: Text('Back'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -61,14 +72,14 @@ class RankingPage extends ConsumerWidget {
                     size: 20,
                   );
             return SizedBox(
-              width: 340,
+              width: 350,
               height: 50,
               child: Card(
                 color: cardColor,
                 child: Row(
                   children: [
                     const SizedBox(width: 5),
-                    i == 0
+                    i < 3
                         ? const Icon(
                             Icons.workspace_premium,
                             color: Colors.deepPurple,
@@ -78,7 +89,13 @@ class RankingPage extends ConsumerWidget {
                             color: Colors.deepPurple.withOpacity(0),
                           ),
                     const SizedBox(width: 5),
-                    Text('${i + 1}'),
+                    SizedBox(
+                      width: 23,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text('${i + 1}'),
+                      ),
+                    ),
                     SizedBox(width: 15),
                     SizedBox(
                       width: 150,
