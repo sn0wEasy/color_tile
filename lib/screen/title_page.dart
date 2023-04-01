@@ -76,7 +76,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                     return const Text("active");
                   case ConnectionState.done:
                     return Text(
-                      'ユーザ名：${snapshot.data}',
+                      'Display Name: ${snapshot.data}',
                       style: const TextStyle(fontSize: 20),
                     );
                 }
