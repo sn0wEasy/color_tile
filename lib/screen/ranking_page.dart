@@ -26,7 +26,7 @@ class RankingPage extends ConsumerWidget {
             children: <Widget>[
               Text('トータルスコアランキング'),
               SizedBox(height: 10),
-              ...createRankingList(rankingElements, deviceId),
+              ...createRankingList(context, rankingElements, deviceId),
               SizedBox(height: 10),
               CustomElevatedButton(
                 onPressed: () {
@@ -45,13 +45,13 @@ class RankingPage extends ConsumerWidget {
     );
   }
 
-  List<Widget> createRankingList(
+  List<Widget> createRankingList(BuildContext context,
       List<RankingElement>? elements, String userDeviceId) {
     return elements != null
         ? elements.mapIndexed((i, e) {
             final cardColor = userDeviceId == e.deviceId
-                ? lightColorScheme.inversePrimary
-                : Colors.white;
+                ? Theme.of(context).colorScheme.inversePrimary
+                : Theme.of(context).colorScheme.surface;
             final platformIcon = e.platform == 'ios' || e.platform == 'android'
                 ? Icon(
                     Icons.smartphone,
