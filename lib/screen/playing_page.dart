@@ -100,13 +100,16 @@ class PlayingPage extends HookConsumerWidget {
   }
 }
 
-class HintDialog extends StatelessWidget {
+class HintDialog extends ConsumerWidget {
   const HintDialog({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      content: Image.asset('lib/assets/images/hint.png'),
+      content: SizedBox(
+        width: 400,
+        child: Image.asset('lib/assets/images/hint.png'),
+      ),
     );
   }
 }
