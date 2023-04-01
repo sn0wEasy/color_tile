@@ -24,7 +24,7 @@ class RankingPage extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Best Total Score Ranking'),
+              Text('トータルスコアランキング'),
               SizedBox(height: 10),
               ...createRankingList(rankingElements, deviceId),
               SizedBox(height: 10),
@@ -52,8 +52,17 @@ class RankingPage extends ConsumerWidget {
             final cardColor = userDeviceId == e.deviceId
                 ? lightColorScheme.inversePrimary
                 : Colors.white;
+            final platformIcon = e.platform == 'ios' || e.platform == 'android'
+                ? Icon(
+                    Icons.smartphone,
+                    size: 20,
+                  )
+                : Icon(
+                    Icons.computer,
+                    size: 20,
+                  );
             return SizedBox(
-              width: 300,
+              width: 340,
               height: 50,
               child: Card(
                 color: cardColor,
@@ -84,7 +93,8 @@ class RankingPage extends ConsumerWidget {
                         child: Text('${e.totalScore}'),
                       ),
                     ),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: 20),
+                    platformIcon,
                   ],
                 ),
               ),

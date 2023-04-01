@@ -89,7 +89,7 @@ app.*.map.json
 /android/app/release
 
 # Image directory
-/images/
+/lib/assets/images
 
 # VSCode setting
 .vscode

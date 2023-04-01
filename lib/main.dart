@@ -25,8 +25,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ARtile',
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: lightColorScheme,
+        fontFamily: "DotGothic16",
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: darkColorScheme,
+        fontFamily: "DotGothic16",
+      ),
       home: const MyHomePage(),
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => const MyHomePage(),

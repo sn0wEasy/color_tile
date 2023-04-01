@@ -61,6 +61,16 @@ class PlayingPage extends HookConsumerWidget {
               ),
               const SizedBox(height: 30),
               CustomElevatedButton(
+                onPressed: () {
+                  showDialog<void>(
+                    context: context,
+                    builder: (_) => const HintDialog(),
+                  );
+                },
+                child: const Text('Hint'),
+              ),
+              const SizedBox(height: 8),
+              CustomElevatedButton(
                 onPressed: () async {
                   ref.read(stopwatchContinuousProvider.notifier).stop();
                   ref.read(stopwatchDiscreteProvider.notifier).push();
@@ -86,6 +96,17 @@ class PlayingPage extends HookConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class HintDialog extends StatelessWidget {
+  const HintDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      content: Image.asset('lib/assets/images/hint.png'),
     );
   }
 }

@@ -50,7 +50,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                     return const Text("active");
                   case ConnectionState.done:
                     return Text(
-                      'High Score: ${snapshot.data}',
+                      'ハイスコア: ${snapshot.data}',
                       style: const TextStyle(fontSize: 20),
                     );
                 }
@@ -60,7 +60,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
             const Text(
               'ARtile',
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 50,
               ),
             ),
             const SizedBox(height: 30),
@@ -76,7 +76,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                     return const Text("active");
                   case ConnectionState.done:
                     return Text(
-                      'Display Name: ${snapshot.data}',
+                      '表示名: ${snapshot.data}',
                       style: const TextStyle(fontSize: 20),
                     );
                 }
