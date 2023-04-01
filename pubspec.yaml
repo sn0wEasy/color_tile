@@ -27,6 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.6.1
+  flutter_launcher_icons: ^0.12.0
 
   flutter_lints: ^2.0.0
   freezed: ^2.3.2
@@ -39,11 +40,16 @@ flutter:
     - lib/assets/images/hint.png
 
   fonts:
-    - family: KiwiMaru
-      fonts:
-        - asset: lib/assets/fonts/KiwiMaru-Light.ttf
-        - asset: lib/assets/fonts/KiwiMaru-Medium.ttf
-        - asset: lib/assets/fonts/KiwiMaru-Regular.ttf
     - family: DotGothic16
       fonts:
         - asset: lib/assets/fonts/DotGothic16-Regular.ttf
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: lib/assets/icons/icon.png
+  web:
+    generate: true
+    image_path: lib/assets/icons/icon.png
+    background_color: "0xFFFFFFFF"
+    theme_color: "0xFFFFFFFF"
