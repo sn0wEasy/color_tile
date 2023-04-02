@@ -47,33 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCvksWybITJRsHsPtQnfmZX48GnjBQyIOU',
-    appId: '1:908752088350:web:f11c7e1212841194ed6d0f',
-    messagingSenderId: '908752088350',
-    projectId: 'artile-24962',
-    authDomain: 'artile-24962.firebaseapp.com',
-    databaseURL: 'https://artile-24962-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'artile-24962.appspot.com',
-    measurementId: 'G-W5TK5X0KB3',
+    apiKey: 'AIzaSyAO9yMfrDOqUCJ1YU0_0hyvQlTQIIj-asI',
+    appId: '1:1068043452365:web:028ee90ee2eadd49e54e84',
+    messagingSenderId: '1068043452365',
+    projectId: 'artile-dev',
+    authDomain: 'artile-dev.firebaseapp.com',
+    storageBucket: 'artile-dev.appspot.com',
+    measurementId: 'G-XR12P7LN9B',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyApY73dAu9QCOFU9RrORZsbWfoYS9__0Eg',
-    appId: '1:908752088350:android:337bda66c4f23272ed6d0f',
-    messagingSenderId: '908752088350',
-    projectId: 'artile-24962',
-    databaseURL: 'https://artile-24962-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'artile-24962.appspot.com',
+    apiKey: 'AIzaSyBo8wkMwM4DPCaUROTbjTxrLY_B1prStpk',
+    appId: '1:1068043452365:android:3050fea4cd5d51fee54e84',
+    messagingSenderId: '1068043452365',
+    projectId: 'artile-dev',
+    storageBucket: 'artile-dev.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBE4x7Y4GOKz7IbkhzLKDLHeWkWvPGNncs',
-    appId: '1:908752088350:ios:65bf1e15c39048a0ed6d0f',
-    messagingSenderId: '908752088350',
-    projectId: 'artile-24962',
-    databaseURL: 'https://artile-24962-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'artile-24962.appspot.com',
-    iosClientId: '908752088350-pl6isj0cb4rcit9ffeab79c8tgdnth5e.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAI_QCa2OE1qD71j-TYfh8cGe6rVTo5TMY',
+    appId: '1:1068043452365:ios:c0d457ba920fde9ce54e84',
+    messagingSenderId: '1068043452365',
+    projectId: 'artile-dev',
+    storageBucket: 'artile-dev.appspot.com',
+    iosClientId: '1068043452365-8u5ico23decmgabifh8o096bdhhj62d9.apps.googleusercontent.com',
     iosBundleId: 'com.example.colorTile',
   );
 }
