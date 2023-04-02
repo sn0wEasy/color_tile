@@ -15,7 +15,6 @@ class RankingNotifier extends StateNotifier<List<RankingElement>?> {
   Future<void> updateBestRecordRanking() async {
     final userProfileList =
         await ref.read(userProfileRepositoryProvider).getUserProfileList;
-    print(userProfileList);
     List<RankingElement> ranking = <RankingElement>[];
     for (UserProfile e in userProfileList) {
       if (e.bestRecord != null) {

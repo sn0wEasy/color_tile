@@ -77,7 +77,6 @@ class UserProfileRepository implements BaseUserProfileRepository {
   @override
   Future<UserProfile?> get userProfile async {
     String deviceId = await ref.watch(deviceIdProvider.future);
-    print('deviceId: $deviceId');
 
     final docRef = db.collection('userProfile').doc('database');
     final doc = await docRef.get();
