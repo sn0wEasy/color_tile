@@ -29,7 +29,7 @@ class RankingPage extends ConsumerWidget {
                 SizedBox(height: 10),
                 SizedBox(
                   width: 350,
-                  height: 500,
+                  height: MediaQuery.of(context).size.height - 150,
                   child: ListView(
                     children: [
                       ...createRankingList(context, rankingElements, deviceId),
@@ -47,6 +47,7 @@ class RankingPage extends ConsumerWidget {
                   },
                   child: Text('Back'),
                 ),
+                SizedBox(height: 10),
               ],
             ),
           ),
