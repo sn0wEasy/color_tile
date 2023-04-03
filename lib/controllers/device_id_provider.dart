@@ -2,23 +2,35 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:uuid/uuid.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final deviceIdProvider = FutureProvider<String>((ref) async {
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-  late final info;
+  late final String deviceId;
+  final uuid = const Uuid().v4();
   try {
     if (kIsWeb) {
-      info = await deviceInfo.webBrowserInfo;
+      final prefs = await SharedPreferences.getInstance();
+      final prefsInfo = prefs.getString('deviceId');
+      if (prefsInfo == null) {
+        deviceId = uuid.hashCode.toString();
+        await prefs.setString('deviceId', deviceId);
+      } else {
+        deviceId = prefsInfo;
+      }
     } else if (Platform.isAndroid) {
-      info = await deviceInfo.androidInfo;
+      final info = await deviceInfo.androidInfo;
+      deviceId =
+          info.data.entries.map((e) => e.value).join().hashCode.toString();
     } else if (Platform.isIOS) {
-      info = await deviceInfo.iosInfo;
+      final info = await deviceInfo.iosInfo;
+      deviceId =
+          info.data.entries.map((e) => e.value).join().hashCode.toString();
     }
   } catch (e) {
     throw ('device is not supported: $e');
   }
-  String deviceId =
-      info.data.entries.map((e) => e.value).join().hashCode.toString();
   return deviceId;
 });
 
@@ -30,5 +42,3 @@ final targetPlatformProvider = Provider<String>((ref) {
   }
 });
 final displayNameProvider = StateProvider<String>((ref) => 'Guest');
-
-// final totalScoreRankingProvider = State
