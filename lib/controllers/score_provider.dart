@@ -39,7 +39,7 @@ final distanceScoreProvider = Provider<int>((ref) {
 
   /// 1. 色ごとにブロックのリストを作成する
   List<List<BlockModel>> blockListByColor = kMovableColorList
-      .map((e) => blockProfileList.where((e) => e.color == kYellow).toList())
+      .map((e1) => blockProfileList.where((e2) => e2.color == e1).toList())
       .toList();
 
   /// 2. 色ごとに距離の合計の最小値を求める
@@ -57,16 +57,20 @@ final distanceScoreProvider = Provider<int>((ref) {
   }
 
   // FIXME: スコア算出ロジックを改良する
-  final score = ((1 / (distanceSum + 1)) * pow(10, 6)).toInt();
+  // (0, 1), (4, 0.8), (100, 0.001)
+  final score = (exp(-0.05 * distanceSum) * pow(10, 6)).toInt();
+  print(distanceSum);
   return score;
 });
 
 // トータルスコアを公開するプロバイダ
 final totalScoreProvider = Provider<int>((ref) {
   // FIXME: スコア算出ロジックを改良する
+  // (0, 1), (10, 0.97), (30, 0.9), (60, 0.7)
   int distanceScore = ref.watch(displayDistanceScoreProvider);
   int timeScore = ref.watch(timeScoreProvider);
-  int totalScore = distanceScore ~/ sqrt(timeScore);
+  print('timeScore: $timeScore');
+  int totalScore = (distanceScore * exp(-0.003 * timeScore * 0.001)).toInt();
   return totalScore;
 });
 
