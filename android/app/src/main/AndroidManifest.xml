@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.color_tile">
    <application
-        android:label="color_tile"
+        android:label="ARtile"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
